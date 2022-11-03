@@ -39,6 +39,20 @@ body{
     grid-area: side;
 }
 
+#side-bar > div{
+    background: grey;
+    border: 2px black solid;
+    width: 60%;
+    height: 14%;
+    padding: auto;
+}
+
+#side-bar > div:hover{
+    width: 100%;
+    transition: width 250ms;
+    transition-timing-function: linear;
+}
+
 #main-body{
     background: palegoldenrod;
     grid-area: body;

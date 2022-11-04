@@ -31,7 +31,7 @@ async function inputLocation(zipCode){
 
 
 
-async function getForecast(lat, long){
+async function getForecast(){
     //Using lat and long build a string to make an API call
     lat = lat + "&lon="
     //fetch from URL to get weather data

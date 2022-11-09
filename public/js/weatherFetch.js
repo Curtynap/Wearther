@@ -38,9 +38,9 @@ async function getForecast(){
 }
 
 function DateMap(){
-    
+
     var dt = new Date(JSONresponse.daily[0].dt);
-    console.log("getDay() : " + dt.getDay()); 
+    console.log("getDay() : " + dt.getDay());
     currDay = dt.getDay()
 
     if(currDay = 1){
@@ -106,6 +106,65 @@ function DateMap(){
     }
 
 
-    
+    function setTheme(){
+        // temp placeholders
+        // if weather is sunny
+    }
+
+    function snowTheme(){
+        // rgb(203, 156, 242)
+        // rgb(158, 123, 155)
+        // rgb(97, 98, 131)
+        // rgb(143, 149, 211)
+
+    }
+
+    function clearTheme(){
+        // rgb(25, 56, 31)
+        // rgb(145, 203, 62)
+        // rgb(83, 165, 72)
+        // rgb(76, 147, 76)
+
+    }
+
+    function cloudyTheme(){
+        // rgb(204, 218, 209)
+        // rgb(156, 174, 169)
+        // rgb(120, 133, 133)
+        // rgb(111, 104, 102)
+    }
+
+    function rainyTheme(){
+        // rgb(0, 169, 165)
+        // rgb(11, 83, 81)
+        // rgb(9, 35, 39)
+        // rgb(78, 128, 152)
+
+    }
+
+    function windyTheme(){
+        // rgb(214, 204, 194)
+        // rgb(245, 235, 224)
+        // rgb(227, 213, 202)
+        // rgb(213, 189, 175)
+
+    }
+
+    function hotTheme(){
+        // rgb(114, 0, 38)
+        // rgb(206, 66, 87)
+        // rgb(255, 127, 81)
+        // rgb(255, 155, 84)
+
+    }
+
+    function hailTheme(){
+        // rgb(255, 73, 158)
+        // rgb(210, 100, 182)
+        // rgb(164, 128, 207)
+        // rgb(119, 155, 231)
+
+    }
+
 
 }

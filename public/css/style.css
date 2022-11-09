@@ -1,3 +1,16 @@
+:root {
+    /**
+        Default CSS vars to hold colors
+
+    **/
+    --main-color-one: rgb(247, 249, 247);
+    --main-color-two: rgb(0, 180, 216);
+    --accent-color-one: rgb(202, 240, 248);
+    --accent-color-two: rgb(144, 224, 239);
+    --accent-color-three: rgb(0, 119, 182);
+}
+
+
 * {
     padding:0;
     margin: 0;

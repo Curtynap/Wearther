@@ -34,21 +34,21 @@ body{
 
 #logo{
     grid-area: logo;
-    background: lightpink;
+    background: var(--main-color-two);
 }
 
 #search{
-    background-color: paleturquoise;
+    background-color: var(--accent-color-one);
     grid-area: search;
 }
 
 #profile{
-    background-color: salmon;
+    background-color: var(--accent-color-two);
     grid-area: profile;
 }
 
 #side-bar{
-    background-color: teal;
+    background-color: var(--accent-color-three);
     grid-area: side;
 }
 
@@ -67,7 +67,7 @@ body{
 }
 
 #main-body{
-    background: palegoldenrod;
+    background: var(--main-color-one);
     grid-area: body;
 }
 

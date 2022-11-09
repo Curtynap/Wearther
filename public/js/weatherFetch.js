@@ -181,68 +181,94 @@ function DateMap(){
         weekdays.set("Friday", JSONresponse.daily[6])
     }
 
+    setTheme(JSONresponse.daily[0]);
+}
 
 
 
-    function setTheme(){
-        // temp placeholders
-        // if weather is sunny
+    function setTheme(forecastArray){
+        let weather = forecastArray.weather[0].main;
+        console.log (weather);
+
+        switch(weather){
+            case 'Thunderstorm':
+                ;
+            case 'Drizzle':
+                ;
+            case 'Rain':
+                rainyTheme();
+                break;
+            case 'Snow':
+                snowTheme();
+                break;
+            case 'Smoke':
+                ;
+            case 'Haze':
+                ;
+            case 'Sand':
+                ;
+            case 'Ash':
+                dangerTheme();
+                break;
+            case 'Mist':
+                ;
+            case 'Fog':
+                fogTheme();
+                break;
+            case 'Dust':
+                ;
+            case 'Squall':
+                ;
+            case 'Tornado':
+                windyTheme();
+                break;
+            case 'Clear':
+                clearTheme();
+                break;
+            case 'Clouds':
+                cloudyTheme();
+                break;
+            default:
+                defaultTheme();
+        }
+    }
+
+    function themeCommands(colorOne, colorTwo, colorThree, colorFour){
+        document.documentElement.style.setProperty('--main-color-two', colorOne);
+        document.documentElement.style.setProperty('--accent-color-one', colorTwo);
+        document.documentElement.style.setProperty('--accent-color-two', colorThree);
+        document.documentElement.style.setProperty('--accent-color-three', colorFour);
+
+    }
+
+    function defaultTheme(){
+        themeCommands('rgb(0, 180, 216)', 'rgb(202, 240, 248)', 'rgb(144, 224, 239)', 'rgb(0, 119, 182)');
     }
 
     function snowTheme(){
-        // rgb(203, 156, 242)
-        // rgb(158, 123, 155)
-        // rgb(97, 98, 131)
-        // rgb(143, 149, 211)
-
+        themeCommands('rgb(203, 156, 242)', 'rgb(158, 123, 155)', 'rgb(97, 98, 131)', 'rgb(143, 149, 211)');
     }
 
     function clearTheme(){
-        // rgb(25, 56, 31)
-        // rgb(145, 203, 62)
-        // rgb(83, 165, 72)
-        // rgb(76, 147, 76)
-
+        themeCommands('rgb(25, 56, 31)', 'rgb(145, 203, 62)', 'rgb(83, 165, 72)', 'rgb(76, 147, 76)');
     }
 
     function cloudyTheme(){
-        // rgb(204, 218, 209)
-        // rgb(156, 174, 169)
-        // rgb(120, 133, 133)
-        // rgb(111, 104, 102)
+        themeCommands('rgb(204, 218, 209)', 'rgb(156, 174, 169)', 'rgb(120, 133, 133)', 'rgb(111, 104, 102)');
     }
 
     function rainyTheme(){
-        // rgb(0, 169, 165)
-        // rgb(11, 83, 81)
-        // rgb(9, 35, 39)
-        // rgb(78, 128, 152)
-
+        themeCommands('rgb(0, 169, 165)', 'rgb(11, 83, 81)', 'rgb(9, 35, 39)', 'rgb(78, 128, 152)');
     }
 
     function windyTheme(){
-        // rgb(214, 204, 194)
-        // rgb(245, 235, 224)
-        // rgb(227, 213, 202)
-        // rgb(213, 189, 175)
-
+        themeCommands('rgb(214, 204, 194)', 'rgb(245, 235, 224)', 'rgb(227, 213, 202)', 'rgb(213, 189, 175)');
     }
 
-    function hotTheme(){
-        // rgb(114, 0, 38)
-        // rgb(206, 66, 87)
-        // rgb(255, 127, 81)
-        // rgb(255, 155, 84)
-
+    function dangerTheme(){
+        themeCommands('rgb(114, 0, 38)', 'rgb(206, 66, 87)', 'rgb(255, 127, 81)', 'rgb(255, 155, 84)');
     }
 
-    function hailTheme(){
-        // rgb(255, 73, 158)
-        // rgb(210, 100, 182)
-        // rgb(164, 128, 207)
-        // rgb(119, 155, 231)
-
+    function fogTheme(){
+        themeCommands('rgb(255, 73, 158)', 'rgb(210, 100, 182)', 'rgb(164, 128, 207)', 'rgb(119, 155, 231)');
     }
-
-
-}

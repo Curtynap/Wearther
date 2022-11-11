@@ -57,27 +57,6 @@ function geoFindMe() {
 
   }
 
-  /*
-//Prompts the users location using their location services built in to the computer
-function getLocation(){
-    if ('geolocation' in navigator) {
-
-        //Using the window property navigator, get users location
-        navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
-    });
-
-    getForecast(lat,long)
-
-    }
-
-
-
-}
-
-*/
-//allows user to input a zipCode and it will return longitude and latitude of that city, these will be sored in lat and long, allowing getForcast(lat,long) to be called and work
 
 async function inputLocation(zipCode){
     let city = document.querySelector("#city")
@@ -89,6 +68,23 @@ async function inputLocation(zipCode){
     getForecast(lat,long)
 }
 
+function openContent(event,day) {
+
+    var i,tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i= 0; i < tabcontent.length;i++) {
+        tabcontent[i].style.display= "none";
+    }
+    tabs = document.getElementsByClassName("tabs");
+    for (i = 0; i < tabs.length;i++) {
+        tabs[i].className = tabs[i].className.replace("active", "");
+    }
+    document.getElementById(day).style.display = "block";
+    event.currentTarget.className+= " active";
+
+}
+    
+    
 
 async function getForecast(lat, long){
     //Using lat and long build a string to make an API call

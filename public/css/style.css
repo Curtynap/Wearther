@@ -71,6 +71,7 @@ body{
 
 #main-body{
     background: var(--main-color-one);
+
     grid-area: body;
     max-height: 100%;
     overflow: hidden;
@@ -85,17 +86,18 @@ body{
 #model{
     font-size: 0px;
     height: 100%;
-    width: 100%;
 }
 
 #model > img{
     object-fit: contain;
-    max-width: 100%;
+
+    margin:auto;
+
+
 }
 
 #pant{
     max-height: 36.5%;
-    background-color: var(--accent-color-three);
 }
 
 

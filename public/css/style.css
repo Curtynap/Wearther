@@ -90,9 +90,7 @@ body{
 
 #model > img{
     object-fit: contain;
-
-    margin:auto;
-
+    margin-left:50%;
 
 }
 

@@ -7,7 +7,7 @@
         <title>Weather</title>
 
         <link href = "../public/css/style.css" rel = "stylesheet">
-        <script src = "/js/weatherFetch.js"></script>
+        <script src = "../public/js/weatherFetch.js"></script>
     </head>
 
     <body>
@@ -17,7 +17,7 @@
         </div>
 
         <div id = "search">
-            
+
             <p id = "city"> </p>
             <input type="text" pattern="\d*" maxlength="5" id ="searchBar" placeholder="Enter Zip">
             <button type="button" id = "searchButton">Search</button>
@@ -32,7 +32,10 @@
         </div>
 
         <div id = "main-body">
-            <p> main body </p>
+            <div id = "model">
+                <img src = "../public/img/shirtModel.png" id = "shirt">
+                <img src = "../public/img/pantModel.png" id = "pant">
+            </div>
         </div>
 
         <div id = "weather-warnings">

@@ -66,3 +66,15 @@ function addClothing(username, garmentType, specificType, color, description, qu
     let query = `INSERT INTO "Clothes" VALUES(${garmentType}, ${specificType}, ${color}, ${description}, ${quantity});`;
     db.run(query);
 }
+
+
+function addUser(username, hashedPassword) {
+    let query = `INSERT INTO "Users" VALUES(${username}, ${hashedPassword})`;
+    db.run(query);
+}
+
+function getUserPassword(username) {
+    let query = `SELECT password FROM Users WHERE Username = ${username}`;
+    let r = db.get(query);
+    return r.password;
+}

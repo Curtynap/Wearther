@@ -15,12 +15,15 @@
     padding:0;
     margin: 0;
 }
+
 html{
     height: 100%;
 }
 
 body{
-    min-height: 100%;
+    height: 100%;
+    height: 100%;
+
     text-align: center;
     display: grid;
     grid-template-columns: 200px auto 100px;
@@ -34,21 +37,21 @@ body{
 
 #logo{
     grid-area: logo;
-    background: lightpink;
+    background: var(--main-color-two);
 }
 
 #search{
-    background-color: paleturquoise;
+    background-color: var(--accent-color-one);
     grid-area: search;
 }
 
 #profile{
-    background-color: salmon;
+    background-color: var(--accent-color-two);
     grid-area: profile;
 }
 
 #side-bar{
-    background-color: teal;
+    background-color: var(--accent-color-three);
     grid-area: side;
 }
 
@@ -67,11 +70,36 @@ body{
 }
 
 #main-body{
-    background: palegoldenrod;
+    background: var(--main-color-one);
+
     grid-area: body;
+    max-height: 100%;
+    overflow: hidden;
 }
 
 #weather-warnings{
     background: lavender;
     grid-area: foot;
+    background-color: var(--accent-color-two);
+}
+
+#model{
+    font-size: 0px;
+    height: 100%;
+}
+
+#model > img{
+    object-fit: contain;
+    margin-left:50%;
+
+}
+
+#pant{
+    max-height: 36.5%;
+}
+
+
+#shirt{
+    background-color: var(--accent-color-one);
+    max-height: 63.5%;
 }

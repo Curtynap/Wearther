@@ -6,7 +6,7 @@
         <meta charset = "UTF-8">
         <title>Weather</title>
 
-        <link href = "../public/css/style.css" rel = "stylesheet">
+        <link href = "/css/style.css" rel = "stylesheet">
         <script src = "/js/weatherFetch.js"></script>
     </head>
 
@@ -17,7 +17,6 @@
         </div>
 
         <div id = "search">
-            
             <p id = "city"> </p>
             <input type="text" pattern="\d*" maxlength="5" id ="searchBar" placeholder="Enter Zip">
             <button type="button" id = "searchButton">Search</button>
@@ -27,17 +26,88 @@
             <p> profile </p>
         </div>
 
+        <script src = "/js/tabs.js"></script>
         <div id = "side-bar">
-            <p> side bar</p>
+
+<!--             <div class="tab">
+
+                <button class="tabs" onmouseover="openContent(event, 'Monday')" id = "MondayB">Monday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Tuesday')">Tuesday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Wednesday')">Wednesday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Thursday')">Thursday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Friday')">Friday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Saturday')">Saturday</button>
+                <button class="tabs" onmouseover="openContent(event, 'Sunday')">Sunday</button>
+
+         </div> -->
+
+                <div id="Monday" class="tabcontent">
+                <h3>Monday</h3>
+                <p id = "dayData">Monday data</p>
+                </div>
+                <div id="Tuesday" class="tabcontent">
+
+                <h3>Tuesday</h3>
+
+                <p id = "dayData">Tuesday data</p>
+
+                </div>
+                <div id="Wednesday" class="tabcontent">
+                <h3>Wednesday</h3>
+                <p id = "dayData">Wednesday data</p>
+
+             </div>
+
+            <div id="Thursday" class="tabcontent">
+
+                <h3>Thursday</h3>
+
+                <p id = "dayData">Thursday data</p>
+
+            </div>
+
+
+            <div id="Friday" class="tabcontent">
+
+                <h3>Friday</h3>
+
+                <p id = "dayData">Friday data</p>
+
+            </div>
+
+
+            <div id="Saturday" class="tabcontent">
+
+                <h3>Saturday</h3>
+
+                <p id = "dayData">Saturday data</p>
+
+            </div>
+
+
+
+            <div id="Sunday" class="tabcontent">
+
+                <h3>Sunday</h3>
+
+                <p id = "dayData">Sunday data</p>
+
+            </div>
+
         </div>
 
         <div id = "main-body">
-            <p> main body </p>
+            <div id = "model">
+                <img src = "/img/shirtModel.png" id = "shirt">
+                <img src = "/img/pantModel.png" id = "pant">
+            </div>
         </div>
 
         <div id = "weather-warnings">
             <p> weather warnings </p>
         </div>
+
+
 
     </body>
 </html>

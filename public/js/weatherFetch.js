@@ -30,6 +30,8 @@ function registerSearchHandler() {
 
 
 
+
+
 function geoFindMe() {
 
     let city = document.querySelector("#city")
@@ -58,19 +60,34 @@ function geoFindMe() {
   }
 
 
+  //found fetch error checking at https://stackoverflow.com/questions/38235715/fetch-reject-promise-and-catch-the-error-if-status-is-not-ok
 async function inputLocation(zipCode){
+    if(zipCode.length == 5){
     let city = document.querySelector("#city")
-    let response = await fetch(geoURL + zipCode + "&appid=" + APIkey)
-    JSONresponse = await response.json()
-    let lat = JSONresponse.lat
-    let long = JSONresponse.lon
-    city.textContent = JSONresponse.name
-    getForecast(lat,long)
+    //let response = await fetch(geoURL + zipCode + "&appid=" + APIkey)
+    fetch(geoURL + zipCode + "&appid=" + APIkey).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      })
+      .then((responseJson) => {
+        let lat = responseJson.lat
+        let long = responseJson.lon
+        city.textContent = responseJson.name
+        getForecast(lat,long)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+    
+
+    }
 }
 
 
     
-    
+
 
 async function getForecast(lat, long){
     //Using lat and long build a string to make an API call
@@ -81,7 +98,49 @@ async function getForecast(lat, long){
     JSONresponse = await response.json()
     console.log(JSONresponse)
     DateMap()
+    populateTabs()
 }
+
+function populateTabs(){
+    
+    const iterator = weekdays.entries();
+    
+    let day0 = document.querySelector("#tabHead0")
+    //gets the day, stored at [0] in weekdays iterator return value
+    day0.textContent = iterator.next().value[0]
+    let day1 = document.querySelector("#tabHead1")
+    day1.textContent = iterator.next().value[0]
+    let day2 = document.querySelector("#tabHead2")
+    day2.textContent = iterator.next().value[0]
+    let day3 = document.querySelector("#tabHead3")
+    day3.textContent = iterator.next().value[0]
+    let day4 = document.querySelector("#tabHead4")
+    day4.textContent = iterator.next().value[0]
+    let day5 = document.querySelector("#tabHead5")
+    day5.textContent = iterator.next().value[0]
+    let day6 = document.querySelector("#tabHead6")
+    day6.textContent = iterator.next().value[0]
+    
+    
+    const iterator1 = weekdays.entries();
+    let data0 = document.querySelector("#zeroData")
+    data0.textContent = iterator1.next().value[1].temp.day
+    
+    
+    let data1 = document.querySelector("#oneData")
+    data1.textContent = iterator1.next().value[1].temp.day
+    let data2 = document.querySelector("#twoData")
+    data2.textContent = iterator1.next().value[1].temp.day
+
+    let data3 = document.querySelector("#threeData")
+    data3.textContent = iterator1.next().value[1].temp.day
+    let data4 = document.querySelector("#fourData")
+    data4.textContent = iterator1.next().value[1].temp.day
+    let data5 = document.querySelector("#fiveData")
+    data5.textContent = iterator1.next().value[1].temp.day
+    let data6 = document.querySelector("#sixData")
+    data6.textContent = iterator1.next().value[1].temp.day
+}   
 
 function DateMap(){
 

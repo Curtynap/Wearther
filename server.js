@@ -3,6 +3,7 @@
 */
 
 const express = require("express");
+const database = require("./public/js/database.js")
 
 
 // Creates an Express application: https://expressjs.com/en/4x/api.html#app

@@ -42,7 +42,7 @@ input[type=text], input[type=password] {
 
   button {
 flex-basis: 48%; 
-background: green;
+background: #04AA6D;
 height: 40px;
 border-radius: 20px;
   border: 0;
@@ -56,6 +56,20 @@ border-radius: 20px;
 
   button:hover {
   opacity: 0.8;
+}
+
+.signup {
+  flex-basis: 48%; 
+background: teal;
+height: 40px;
+border-radius: 20px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  
 }
 
 .cancelbtn {
@@ -90,7 +104,7 @@ img.logo {
         <img src="" alt="logo" class="logo">
       </div> -->
     <div class="form-box">
-    <h1 style="text-align:center">Login to Your Wearther Account</h1>
+    <h1 style="text-align:center">Sign Up and Create Your Wearther Account</h1>
     <form action="/login" method="POST">
             <p><label for="username" style="color:#3c00a0">Username: </label></p>
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -98,15 +112,13 @@ img.logo {
             <p><label for="password" style="color:#3c00a0">Password:</label></p>
             <input type="password" placeholder="Enter Password" name="password" required>
 
-            <button type="submit">Login</button>
+            <p><label for="password" style="color:#3c00a0">Confirm Password:</label></p>
+            <input type="password" placeholder="Confirm Password" name="password" required>
+
+            <button type="submit">Create Your Account</button>
             <button type="button" 
             onclick="location.href='HomePage.html'" class="cancelbtn">
               Cancel</button>
-
-            <button type="signup" style="background: teal"
-            onclick="location.href='Signup.html'" type="signup">
-              Sign Up</button>
-        <span class="signup"></span>
         </div>   
     </form>
 </body>

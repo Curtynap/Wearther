@@ -3,7 +3,10 @@
 */
 
 const express = require("express");
-const database = require("./public/js/database.js")
+
+const path = require('path');
+const dbPath = path.resolve(__dirname, 'public/js/database.js')
+const database = require(dbPath);
 
 
 // Creates an Express application: https://expressjs.com/en/4x/api.html#app

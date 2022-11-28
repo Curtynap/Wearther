@@ -1,53 +1,74 @@
+/*
+ * All of the database interface code lives here
+*/
+
 "use strict";
 
+//require the package
 const sqlite = require('sqlite3');
-const db = new sqlite.Database("/sql/wearther_database.sqlite");
 
+//setup the database variable
+const path = require('path');
+const dbPath = path.resolve(__dirname, './sql/wearther_database.db')
+const db = new sqlite.Database(dbPath);
+
+
+function add(a, b) {
+    return a + b;
+}
 
 //get a set of clothes from the database
 function getClothes(username, garmentType) {
     let query;
-    let qResult;
     let toReturn = [];
     if (username === null) {
         query = `SELECT * FROM ReferenceTable WHERE garmentType = ${garmentType}`;
-        qResult = db.all(query);
-        for (let r of qResult) {
-            let result = {
-                garmentType: r.garmentType,
-                specificType: r.specificType,
-                color: null,
-                description: null,
-                quantity: null,
-                waterproof: null,
-                clipArt: null,
-                picture: null
-            }; //make an object with the required fields
-            toReturn.push(result); //put it on the return list
-        }
+        db.all(query, [], (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            rows.forEach((row)  => {
+                let result = {
+                    garmentType: r.garmentType,
+                    specificType: r.specificType,
+                    color: null,
+                    description: null,
+                    quantity: null,
+                    waterproof: null,
+                    clipArt: null,
+                    picture: null
+                }; //make an object with the required fields
+                toReturn.push(result); //put it on the return list
+            });
+        });
+        console.log(toReturn);
+        return toReturn;
     }
 
 
     else {
         query = `WITH tempTable AS (SELECT * FROM Clothes WHERE username = ${username}) SELECT * FROM tempTable NATURAL JOIN ReferenceTable WHERE garmentType = ${garmentType}`;
-        qResult = db.all(query);
-        for (let r of qResult) {
-            let result = {
-                garmentType: r.garmentType,
-                specificType: r.specificType,
-                color: r.color,
-                description: r.color,
-                quantity: r.quantity,
-                waterproof: r.waterproof,
-                clipArt: r.clipArt,
-                picture: r.picture
-            }; //make an object with the required fields
-            toReturn.push(result); //put it on the return list
-        }
+        db.all(query, [], (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            rows.forEach((row) => {
+                let result = {
+                    garmentType: r.garmentType,
+                    specificType: r.specificType,
+                    color: null,
+                    description: null,
+                    quantity: null,
+                    waterproof: null,
+                    clipArt: null,
+                    picture: null
+                }; //make an object with the required fields
+                toReturn.push(result); //put it on the return list
+            });
+        });
+        console.log(toReturn);
+        return toReturn;
     }
-
-    //give back the list of possible clothes
-    return toReturn;
 }
 
 
@@ -75,9 +96,14 @@ function addClothing(username, garmentType, specificType, color, description, qu
 //add a user to the database
 //this will not work if the user already exists
 function addUser(username, hashedPassword) {
-    //TODO: does a username exist?
-    let query = `INSERT INTO "Users" VALUES(${username}, ${hashedPassword})`;
-    db.run(query);
+    if (!userExists(username)) {
+        let query = `INSERT INTO "Users" VALUES(${username}, ${hashedPassword})`;
+        db.run(query);
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 
@@ -85,6 +111,9 @@ function addUser(username, hashedPassword) {
 function checkUserPassword(username, hashedPassword) {
     let query = `SELECT password FROM Users WHERE Username = ${username}`;
     let r = db.get(query);
+    if (!userExists) {
+        return false;
+    }
 
     //return true or false
     if (hashedPassword === r.password) {
@@ -95,6 +124,17 @@ function checkUserPassword(username, hashedPassword) {
     }
 }
 
+function userExists(username) {
+    let query = `SELECT * FROM Users WHERE Username = ${username}`;
+    let r = db.get(query);
+    if (r === null) {
+        return false;
+    } 
+    else {
+        return true;
+    }
+}
+
 function changePassword(username) {
     //
 }
@@ -102,9 +142,14 @@ function changePassword(username) {
 
 
 ///////// CODE USED FOR EXPORTING /////////
-modules.export.sql = sql;
-modules.export.db = db;
-modules.export.getClothes = getClothes();
-modules.export.addReference = addReference();
-modules.export.addUser = addUser();
-modules.export.checkUserPassword = checkUserPassword();
+//module.exports.sqlite = sqlite;
+module.exports.db = db;
+module.exports.getClothes = getClothes;
+module.exports.addReference = addReference;
+module.exports.addUser = addUser;
+module.exports.checkUserPassword = checkUserPassword;
+module.exports.changePassword = changePassword;
+module.exports.addClothing = addClothing;
+
+
+module.exports.add = add;

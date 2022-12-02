@@ -1,7 +1,6 @@
 /*
  * All the code for the wardrobe, and the upload page 
  * including adding clothing to the user's profile, lives here
- * This may also include login
 */
 
 "use strict";

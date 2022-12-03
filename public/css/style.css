@@ -101,8 +101,8 @@ body{
     font-size: 0px;
     height: 100%;
     width: 50%;
-    object-fit:scale-down;
-    display:inline-block;
+    object-fit: scale-down;
+    display: inline-block;
     float: left;
 }
 

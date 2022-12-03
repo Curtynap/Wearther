@@ -5,68 +5,59 @@
 "use strict";
 
 //require the package
-const sqlite = require('sqlite3');
+const sqlite = require('better-sqlite3');
 
 //setup the database variable
 const path = require('path');
 const dbPath = path.resolve(__dirname, './sql/wearther_database.db')
-const db = new sqlite.Database(dbPath);
+const db = new sqlite(dbPath);
+db.pragma('journal_mode = WAL');
 
 
 function add(a, b) {
     return a + b;
 }
 
+
 //get a set of clothes from the database
 function getClothes(username, garmentType) {
     let query;
     let toReturn = [];
     if (username === null) {
-        query = `SELECT * FROM ReferenceTable WHERE garmentType = ${garmentType}`;
-        db.all(query, [], (err, rows) => {
-            if (err) {
-                throw err;
-            }
-            rows.forEach((row)  => {
-                let result = {
-                    garmentType: r.garmentType,
-                    specificType: r.specificType,
-                    color: null,
-                    description: null,
-                    quantity: null,
-                    waterproof: null,
-                    clipArt: null,
-                    picture: null
-                }; //make an object with the required fields
-                toReturn.push(result); //put it on the return list
-            });
-        });
-        console.log(toReturn);
-        return toReturn;
+        query = `SELECT * FROM ReferenceTable WHERE garmentType = ?`;
+        let rows = db.prepare(query).all(garmentType);
+        for (r in rows) {
+            let result = {
+                garmentType: r.garmentType,
+                specificType: r.specificType,
+                color: null,
+                description: null,
+                quantity: null,
+                waterproof: null,
+                clipArt: null,
+                picture: null
+            }; //make an object with the required fields
+            toReturn.push(result); //put it on the return list
+        }
     }
 
 
     else {
-        query = `WITH tempTable AS (SELECT * FROM Clothes WHERE username = ${username}) SELECT * FROM tempTable NATURAL JOIN ReferenceTable WHERE garmentType = ${garmentType}`;
-        db.all(query, [], (err, rows) => {
-            if (err) {
-                throw err;
-            }
-            rows.forEach((row) => {
-                let result = {
-                    garmentType: r.garmentType,
-                    specificType: r.specificType,
-                    color: null,
-                    description: null,
-                    quantity: null,
-                    waterproof: null,
-                    clipArt: null,
-                    picture: null
-                }; //make an object with the required fields
-                toReturn.push(result); //put it on the return list
-            });
-        });
-        console.log(toReturn);
+        query = `WITH tempTable AS (SELECT * FROM Clothes WHERE username = ?) SELECT * FROM tempTable NATURAL JOIN ReferenceTable WHERE garmentType = ?`;
+        let rows = db.prepare(query).all(username, garmentType);
+        for (r in rows) {
+            let result = {
+                garmentType: r.garmentType,
+                specificType: r.specificType,
+                color: r.color,
+                description: r.description,
+                quantity: r.quantity,
+                waterproof: r.water,
+                clipArt: r.clipArt,
+                picture: null
+            }; //make an object with the required fields
+            toReturn.push(result); //put it on the return list
+        }
         return toReturn;
     }
 }
@@ -74,8 +65,8 @@ function getClothes(username, garmentType) {
 
 //add clothing type to the reference table
 function addReference(garmentType, specificType, temperature, clipArt) {
-    let query = `INSERT INTO "ReferenceTable" VALUES(${garmentType}, ${specificType}, ${temperature}, ${clipArt});`;
-    db.run(query);
+    let query = `INSERT INTO "ReferenceTable" VALUES(?, ?, ?, ?)`;
+    db.prepare(query).run(garmentType, specificType, temperature, clipArt);
 }
 
 
@@ -86,9 +77,10 @@ function addClothing(username, garmentType, specificType, color, description, qu
     //dumb ideas for improving the function go here:
     //add another table with keywords instead of a description field. This may just kick the can down the road though
 
-    let query = `INSERT INTO "Clothes" VALUES(${username}, ${garmentType}, ${specificType}, ${color}, ${description}, ${quantity}, ${waterproof});`;
-    db.run(query);
+    let query = `INSERT INTO "Clothes" VALUES(?, ?, ?, ?, ?, ?, ?)`;
+    db.prepare(query).run(username, garmentType, specificType, color, description, quantity, waterproof);
 }
+
 
 
 ////////// LOGIN DATABASE STUFF //////////
@@ -97,8 +89,8 @@ function addClothing(username, garmentType, specificType, color, description, qu
 //this will not work if the user already exists
 function addUser(username, hashedPassword) {
     if (!userExists(username)) {
-        let query = `INSERT INTO "Users" VALUES(${username}, ${hashedPassword})`;
-        db.run(query);
+        let query = `INSERT INTO "Users" VALUES(?, ?)`;
+        db.prepare(query).run(username, hashedPassword);
         return true;
     }
     else {
@@ -109,12 +101,12 @@ function addUser(username, hashedPassword) {
 
 //get a user's password from the database
 function checkUserPassword(username, hashedPassword) {
-    let query = `SELECT password FROM Users WHERE Username = ${username}`;
-    let r = db.get(query);
     if (!userExists) {
         return false;
     }
 
+    let query = `SELECT password FROM Users WHERE Username = ?`;
+    let r = db.prepare(query).get(username);
     //return true or false
     if (hashedPassword === r.password) {
         return true;
@@ -125,13 +117,24 @@ function checkUserPassword(username, hashedPassword) {
 }
 
 function userExists(username) {
-    let query = `SELECT * FROM Users WHERE Username = ${username}`;
-    let r = db.get(query);
-    if (r === null) {
+    let query = 'SELECT * FROM Users WHERE username = ?';
+    let result = db.prepare(query).get(username);
+    if (result === undefined) {
         return false;
-    } 
+    }
     else {
         return true;
+    }
+}
+
+function removeUser(username) {
+    if (userExists) {
+        let query = `DELETE * FROM Users WHERE Username = ?`;
+        db.prepare(query).run(username);
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -150,6 +153,8 @@ module.exports.addUser = addUser;
 module.exports.checkUserPassword = checkUserPassword;
 module.exports.changePassword = changePassword;
 module.exports.addClothing = addClothing;
+module.exports.removeUser = removeUser;
+module.exports.userExists = userExists;
 
 
 module.exports.add = add;

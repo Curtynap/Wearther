@@ -75,7 +75,9 @@ body{
     width: 100%;
     transition: width 250ms;
     transition-timing-function: linear;
+    cursor:pointer;
 }
+
 
 #main-body{
     background: var(--main-color-one);
@@ -90,6 +92,9 @@ body{
     grid-area: foot;
     background-color: var(--accent-color-two);
     
+}
+#alertTitle{
+    font-size: 120%;
 }
 
 .model{

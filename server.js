@@ -32,6 +32,10 @@ app.get("/login", (req, res) => {
     
 });
 
+app.post("/signup", (req, res) => {
+    console.log(req.body);
+    res.send('<h1>Successful Login</h1>');
+});
 
 
 

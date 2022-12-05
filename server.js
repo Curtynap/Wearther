@@ -32,9 +32,8 @@ app.get("/login", (req, res) => {
     
 });
 
-app.post("/signup", (req, res) => {
-    console.log(req.body);
-    res.send('<h1>Successful Login</h1>');
+app.get("/signup", (req, res) => {
+    res.sendFile(__dirname + '/views/Signup.html');
 });
 
 

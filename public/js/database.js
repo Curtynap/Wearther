@@ -65,7 +65,7 @@ function getClothes(username, garmentType) {
 
 //add clothing type to the reference table
 function addReference(garmentType, specificType, temperature, clipArt) {
-    let query = `INSERT INTO "ReferenceTable" VALUES(?, ?, ?, ?)`;
+    let query = `INSERT INTO ReferenceTable VALUES(?, ?, ?, ?)`;
     db.prepare(query).run(garmentType, specificType, temperature, clipArt);
 }
 
@@ -74,13 +74,42 @@ function addReference(garmentType, specificType, temperature, clipArt) {
 //I need to find the best way to get a single piece of clothing without using the ID# because we don't have clear access to that
 //But right now it's just kinda gross unfortunately
 function addClothing(username, garmentType, specificType, color, description, quantity, waterproof) {
-    //dumb ideas for improving the function go here:
-    //add another table with keywords instead of a description field. This may just kick the can down the road though
+    let isUnique = false;
+    let clothingID = username + "." + garmentType + ".";
+    let i = 0;
+    while (!isUnique) {
+        i++;
+        if (checkClothingID(clothingID + i)) {
+            answerID = answerID + i;
+            isUnique = true;
+        }
+    }
 
-    let query = `INSERT INTO "Clothes" VALUES(?, ?, ?, ?, ?, ?, ?)`;
-    db.prepare(query).run(username, garmentType, specificType, color, description, quantity, waterproof);
+    let query = `INSERT INTO Clothes VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
+    db.prepare(query).run(username, garmentType, specificType, color, description, clothingID, quantity, waterproof);
 }
 
+
+function checkClothingID(clothingID) {
+    let query = "SELECT * FROM Clothes WHERE idNum = ?"
+    let clothingItem = db.prepare(query).run(clothingID);
+    if (clothingItem === undefined) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+//returns false on a failure
+function addPicture(clothingID, pictureAddress) {
+    if (!checkClothingID(clothingID)) {
+        return false;
+    }
+    let query = "INSERT INTO Pictures VALUES(?, ?)";
+    db.prepare(query).run(clothingID, pictureAddress);
+}
 
 
 ////////// LOGIN DATABASE STUFF //////////
@@ -151,10 +180,8 @@ module.exports.getClothes = getClothes;
 module.exports.addReference = addReference;
 module.exports.addUser = addUser;
 module.exports.checkUserPassword = checkUserPassword;
-module.exports.changePassword = changePassword;
 module.exports.addClothing = addClothing;
 module.exports.removeUser = removeUser;
-module.exports.userExists = userExists;
 
 
 module.exports.add = add;

@@ -1,9 +1,19 @@
-
 window.addEventListener('DOMContentLoaded', clothingSelector);
 
+
+function clothingSelector(){
+    let total = document.getElementById("side-bar").querySelectorAll(".tabcontent");
+    total[0].addEventListener('click', dayZero);
+    total[1].addEventListener('click', dayOne);
+    total[2].addEventListener('click', dayTwo);
+    total[3].addEventListener('click', dayThree);
+    total[4].addEventListener('click', dayFour);
+    total[5].addEventListener('click', dayFive);
+    total[6].addEventListener('click', daySix);
+}
 //Functions in order to retrieve data from tabs on click
 function dayZero(){
-    closeTabs()
+    closeTabs();
 
     let tab = document.getElementById("tabZero");
     let desc = document.getElementById("description0");
@@ -27,7 +37,8 @@ function dayZero(){
     var minMaxValue = document.getElementById("minMaxDay0");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data0); 
+    clothingSelect(data0, desc.textContent);
+
 };
 
 function dayOne(){
@@ -56,7 +67,7 @@ function dayOne(){
     var minMaxValue = document.getElementById("minMaxDay1");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data1);
+    clothingSelect(data1, desc.textContent);
 };
 
 function dayTwo(){
@@ -85,7 +96,7 @@ function dayTwo(){
     var minMaxValue = document.getElementById("minMaxDay2");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data2);
+    clothingSelect(data2, desc.textContent);
 };
 
 function dayThree(){
@@ -114,7 +125,7 @@ function dayThree(){
     var minMaxValue = document.getElementById("minMaxDay3");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data3);
+    clothingSelect(data3, desc.textContent);
 };
 
 function dayFour(){
@@ -143,7 +154,7 @@ function dayFour(){
     var minMaxValue = document.getElementById("minMaxDay4");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data4);
+    clothingSelect(data4, desc.textContent);
 };
 
 function dayFive(){
@@ -172,7 +183,7 @@ function dayFive(){
     var minMaxValue = document.getElementById("minMaxDay5");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data5);
+    clothingSelect(data5, desc.textContent);
 };
 
 function daySix(){
@@ -201,20 +212,9 @@ function daySix(){
     var minMaxValue = document.getElementById("minMaxDay6");
     var data = " " + minT + " / " + maxT;
     minMaxValue.innerHTML = data;
-    alert(data6);
+    clothingSelect(data6, desc.textContent);
 };
 
-
-function clothingSelector(){
-    let total = document.getElementById("side-bar").querySelectorAll(".tabcontent");
-    total[0].addEventListener('click', dayZero);
-    total[1].addEventListener('click', dayOne);
-    total[2].addEventListener('click', dayTwo);
-    total[3].addEventListener('click', dayThree);
-    total[4].addEventListener('click', dayFour);
-    total[5].addEventListener('click', dayFive);
-    total[6].addEventListener('click', daySix);
-}
 
 function closeTabs(){
     let tab0 = document.getElementById("tabZero");
@@ -268,4 +268,41 @@ function closeTabs(){
     minMax4.innerHTML = " ";
     minMax5.innerHTML = " ";
     minMax6.innerHTML = " ";
+}
+
+function clothingSelect(day, description){
+    if (parseInt(day) >= 80 ){
+        descrToClothes(description);
+
+    }else if(parseInt(day) <= 80 && parseInt(day) >= 60){
+        descrToClothes(description);
+
+    }else if(parseInt(day) <= 60 && parseInt(day) >= 40){
+        descrToClothes(description);
+
+    }else if(parseInt(day) <= 40 && parseInt(day)  >= 20 ){
+        descrToClothes(description);
+
+    }else if(parseInt(day)  >= 20 && parseInt(day) <= 0){
+        descrToClothes(description);
+
+    }else if(parseInt(day) <= 0){
+        descrToClothes(description);
+    }
+
+}
+
+function descrToClothes(description){
+    if(description.includes("rain")){
+        alert("where rainy clothes");
+    }else if(description.includes("snow")){
+        alert("where snow clothes");
+    }else if(description.includes("clouds")){
+        alert("where cloud clothes");
+    }else if(description.includes("sun")){
+        alert("where clothes to keep you cool");
+    }else if(description.includes("clear")){
+        alert("Clear skies where what you like");
+
+    }
 }

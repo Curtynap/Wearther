@@ -28,57 +28,50 @@
 
         <script src = "/js/tabs.js"></script>
         <div id = "side-bar">
-
-<!--             <div class="tab">
-
-                <button class="tabs" onmouseover="openContent(event, 'Monday')" id = "MondayB">Monday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Tuesday')">Tuesday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Wednesday')">Wednesday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Thursday')">Thursday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Friday')">Friday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Saturday')">Saturday</button>
-                <button class="tabs" onmouseover="openContent(event, 'Sunday')">Sunday</button>
-
-         </div> -->
-
                 <div id="tabZero" class="tabcontent">
                     <h3 id="tabHead0"></h3>
                     <p id = "zeroData"></p>
+                    <p id = "minMaxDay0"></p>  
+                    <p id = "description0"></p>  
+
                 </div>
                 <div id="tabOne" class="tabcontent">
-
                     <h3 id = "tabHead1"></h3>
                     <p id = "oneData"></p>
+                    <p id = "minMaxDay1"></p> 
+                    <p id = "description1"></p>  
+
                 </div>
                 <div id="tabTwo" class="tabcontent">
                 <h3 id = "tabHead2"></h3>
                 <p id = "twoData"></p>
-
+                <p id = "minMaxDay2"></p>  
+                <p id = "description2"></p>  
              </div>
             <div id="tabThree" class="tabcontent">
 
                 <h3 id = "tabHead3"></h3>
-
                 <p id = "threeData"></p>
-
+                <p id = "minMaxDay3"></p>  
+                <p id = "description3"></p>  
             </div>
 
 
             <div id="tabFour" class="tabcontent">
 
                 <h3 id = "tabHead4"></h3>
-
                 <p id = "fourData"></p>
-
+                <p id = "minMaxDay4"></p>  
+                <p id = "description4"></p>  
             </div>
 
 
             <div id="tabFive" class="tabcontent">
 
                 <h3 id = "tabHead5"></h3>
-
                 <p id = "fiveData"></p>
-
+                <p id = "minMaxDay5"></p>
+                <p id = "description5"></p>  
             </div>
 
 
@@ -86,11 +79,10 @@
             <div id="tabSix" class="tabcontent">
 
                 <h3 id = "tabHead6"></h3>
-
                 <p id = "sixData"></p>
-
+                <p id = "minMaxDay6"></p>  
+                <p id = "description6"></p>  
             </div>
-
         </div>
 
         <div id = "main-body">
@@ -110,7 +102,13 @@
         </div>
 
         <div id = "weather-warnings">
-            <p> weather warnings </p>
+            <p id = "alertTitle"> Weekly Weather Warnings </p>
+            <ul style = "list-style: none;" id = "alertsAPI">
+                <li>
+                </li>
+                
+
+            </ul>
         </div>
 
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        <title>Weather</title>
+
+        <link href = "/css/style.css" rel = "stylesheet">
+        <script src = "/js/weatherFetch.js"></script>
+    </head>
+
+    <body>
+
+        <div id = "logo" onclick="location.href='login'">
+            <div id = "logoImg"></div>
+        </div>
+
+        <div id = "search">
+            <p id = "city"> </p>
+            <input type="text" pattern="\d*" maxlength="5" id ="searchBar" placeholder="Enter Zip">
+            <button type="button" id = "searchButton">Search</button>
+        </div>
+
+        <div id = "profile" onclick="location.href='login'">
+            <div id = "profileImg"></div>
+        </div>
+
+        <script src = "/js/tabs.js"></script>
+        <div id = "side-bar">
+                <div id="tabZero" class="tabcontent">
+                    <h3 id="tabHead0"></h3>
+                    <p id = "zeroData"></p>
+                    <p id = "minMaxDay0"></p>  
+                    <p id = "description0"></p>  
+
+                </div>
+                <div id="tabOne" class="tabcontent">
+                    <h3 id = "tabHead1"></h3>
+                    <p id = "oneData"></p>
+                    <p id = "minMaxDay1"></p> 
+                    <p id = "description1"></p>  
+
+                </div>
+                <div id="tabTwo" class="tabcontent">
+                <h3 id = "tabHead2"></h3>
+                <p id = "twoData"></p>
+                <p id = "minMaxDay2"></p>  
+                <p id = "description2"></p>  
+             </div>
+            <div id="tabThree" class="tabcontent">
+
+                <h3 id = "tabHead3"></h3>
+                <p id = "threeData"></p>
+                <p id = "minMaxDay3"></p>  
+                <p id = "description3"></p>  
+            </div>
+
+
+            <div id="tabFour" class="tabcontent">
+
+                <h3 id = "tabHead4"></h3>
+                <p id = "fourData"></p>
+                <p id = "minMaxDay4"></p>  
+                <p id = "description4"></p>  
+            </div>
+
+
+            <div id="tabFive" class="tabcontent">
+
+                <h3 id = "tabHead5"></h3>
+                <p id = "fiveData"></p>
+                <p id = "minMaxDay5"></p>
+                <p id = "description5"></p>  
+            </div>
+
+
+
+            <div id="tabSix" class="tabcontent">
+
+                <h3 id = "tabHead6"></h3>
+                <p id = "sixData"></p>
+                <p id = "minMaxDay6"></p>  
+                <p id = "description6"></p>  
+            </div>
+        </div>
+
+        <div id = "main-body">
+            <div class = "model">
+                <img src = "/img/headBlankModel.png" id = "head1">
+                <img src = "/img/torsoBlankModel.png" id = "torso1">
+                <img src = "/img/legBlankModel.png" id = "leg1">
+                <img src = "/img/feetBlankModel.png" id = "feet1">
+            </div>
+
+            <div class = "model">
+                <img src = "/img/headBlankModel.png" id = "head1">
+                <img src = "/img/torsoBlankModel.png" id = "torso1">
+                <img src = "/img/legBlankModel.png" id = "leg1">
+                <img src = "/img/feetBlankModel.png" id = "feet1">
+            </div>
+        </div>
+
+        <div id = "weather-warnings">
+            <p id = "alertTitle"> Weekly Weather Warnings </p>
+            <ul style = "list-style: none;" id = "alertsAPI">
+                <li>
+                </li>
+                
+
+            </ul>
+        </div>
+
+
+
+    </body>
+</html>

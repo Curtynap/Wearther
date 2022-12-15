@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", registerPostButtonListener);
+window.addEventListener("DOMContentLoaded", registerLoginButtonListener);
 //window.addEventListener("DOMContentLoaded", doSomeStuff);
 
 
@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", registerPostButtonListener);
 // we are sending along (whatever is typed in the input). The server
 // responds by sending back a json object that contains a single 
 // piece of text: "You did it!"
+/*
 function registerPostButtonListener() {
     let button = document.querySelector("#post_button");
     button.addEventListener("click", async function () {
@@ -23,5 +24,27 @@ function registerPostButtonListener() {
         });
         let result = await response.json();
         input.value = result.text;
+    });
+}
+*/
+
+function registerLoginButtonListener() {
+    let button = document.querySelector("#loginButton");
+    button.addEventListener("click", async function () {
+        let username = document.querySelector("#uname");
+        let password = document.querySelector("#pswrd");
+        let url = "/loginPost"
+        let response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usernameText: username.value,
+                pswrd: password.value 
+            })
+        });
+        let result = await response.json();
+       
     });
 }

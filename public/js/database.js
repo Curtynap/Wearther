@@ -130,14 +130,15 @@ function addUser(username, hashedPassword) {
 
 //get a user's password from the database
 function checkUserPassword(username, hashedPassword) {
-    if (!userExists) {
+    if (!userExists(username)) {
         return false;
     }
 
-    let query = `SELECT password FROM Users WHERE Username = ?`;
-    let r = db.prepare(query).get(username);
+    let query = `SELECT * FROM Users WHERE username = ?`;
+    let row = db.prepare(query).get(username);
+
     //return true or false
-    if (hashedPassword === r.password) {
+    if (hashedPassword === row.password) {
         return true;
     }
     else {
@@ -182,6 +183,7 @@ module.exports.addUser = addUser;
 module.exports.checkUserPassword = checkUserPassword;
 module.exports.addClothing = addClothing;
 module.exports.removeUser = removeUser;
+module.exports.userExists = userExists;
 
 
 module.exports.add = add;

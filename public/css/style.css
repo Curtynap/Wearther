@@ -52,12 +52,12 @@ body{
 }
 
 #search{
-    background-color: var(--accent-color-one);
+    background-color: var(--main-color-one);
     grid-area: search;
 }
 
 #profile{
-    background-color: var(--accent-color-two);
+    background-color: var(--accent-color-one);
     grid-area: profile;
 }
 
@@ -69,12 +69,12 @@ body{
 }
 
 #side-bar{
-    background-color: var(--accent-color-three);
+    background-color: var(--main-color-one);
     grid-area: side;
 }
 
 #side-bar > div{
-    background: grey;
+    background: var(--accent-color-two);
     border: 2px black solid;
     width: 60%;
     height: 13.68%;
@@ -100,9 +100,10 @@ body{
 #weather-warnings{
     background: lavender;
     grid-area: foot;
-    background-color: var(--accent-color-two);
+    background-color: var(--accent-color-three);
     
 }
+
 #alertTitle{
     font-size: 120%;
 }
@@ -120,5 +121,6 @@ body{
     max-width: 60%;
     max-height: 45%;
 }
+
 
 
